@@ -12,7 +12,7 @@
     </p>
     <p>
         <label for="id_content">Log content:</label>
-        <textarea name="content" cols="40" rows="10" id="id_content" required hx-trigger="keyup changed delay:1.5s"
+        <textarea name="content" id="id_content" required hx-trigger="keyup changed delay:1.5s"
             hx-post="{% url 'log:update_form' %}"
             hx-include="[name='content'], [name='title'], [name='date']">{{log.content}}</textarea>
     </p>
