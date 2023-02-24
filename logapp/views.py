@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.timezone import datetime
 from django.http import HttpResponse
 
-from logapp.models import get_or_create_users_log
+from logapp.models import get_or_create_users_log, Log
 
 
 @login_required()
@@ -34,3 +34,11 @@ def log_update_view(request: HttpRequest, date: str = None) -> TemplateResponse:
     context = {"log": log}
 
     return TemplateResponse(request, "logapp/log_update.html", context=context)
+
+
+@login_required()
+@require_http_methods(["GET"])
+def log_list_view(request: HttpRequest) -> TemplateResponse:
+    logs = Log.objects.filter(user=request.user)
+    context = {"objects": logs}
+    return TemplateResponse(request, "logapp/log_list.html", context=context)

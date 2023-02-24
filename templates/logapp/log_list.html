@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}All Logs{% endblock %}
+
+{% block content %}
+<h1>All Logs</h1>
+
+{% for object in objects %}
+<strong>{{ object.title }}</strong>
+<div>{{ object.date }}</div>
+<blockquote>
+    {% for line in object.content_lines %}
+    {{ line }}<br>
+    {% endfor %}
+</blockquote>
+{% endfor %}
+
+{% endblock content %}

@@ -46,6 +46,10 @@ class Log(models.Model):
         ...
 
     @property
+    def content_lines(self):
+        return self.content.splitlines()
+
+    @property
     def date_y_m_d(self):
         return self.date.strftime("%Y-%m-%d")
 

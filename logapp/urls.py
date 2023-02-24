@@ -1,7 +1,7 @@
 from django.urls import path, register_converter, re_path
 from django.utils.timezone import datetime
 
-from logapp.views import log_form_view, log_update_view
+from logapp.views import log_form_view, log_update_view, log_list_view
 
 
 class DateConverter:
@@ -20,6 +20,7 @@ register_converter(DateConverter, "date")
 app_name = "log"
 urlpatterns = [
     path("update/", log_update_view, name="update_today"),
+    path("list/", log_list_view, name="list"),
     re_path(
         r"^update/(?P<date>\d{4}-\d{1,2}-\d{1,2})/$", log_update_view, name="update"
     ),
