@@ -1,0 +1,19 @@
+<form id="log_update_form" method="post" class="">
+    <p>
+        <label for="id_date">Log date:</label>
+        <input type="date" name="date" value="{{ log.date_y_m_d }}" required id="id_date" hx-swap="outerHTML"
+            hx-target="#log_update_form" hx-trigger="change" hx-get="{% url 'log:update_form' %}">
+    </p>
+    <p>
+        <label for="id_title">Log title:</label>
+        <input type="text" name="title" value="{{ log.title }}" maxlength="255" id="id_title" required
+            hx-trigger="keyup changed delay:1.5s" hx-post="{% url 'log:update_form' %}"
+            hx-include="[name='content'], [name='title'], [name='date']">
+    </p>
+    <p>
+        <label for="id_content">Log content:</label>
+        <textarea name="content" cols="40" rows="10" id="id_content" required hx-trigger="keyup changed delay:1.5s"
+            hx-post="{% url 'log:update_form' %}"
+            hx-include="[name='content'], [name='title'], [name='date']">{{log.content}}</textarea>
+    </p>
+</form>

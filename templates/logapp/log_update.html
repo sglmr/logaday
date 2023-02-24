@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}About page{% endblock %}
+
+{% block content %}
+<h1>Update Log</h1>
+
+{% include 'logapp/log_update_form.html' with log=log %}
+
+{% endblock content %}

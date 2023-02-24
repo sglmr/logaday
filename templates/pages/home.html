@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home page{% endblock title %}
+
+{% block content %}
+<div>
+  <img style="max-width:500px;" src="{% static 'images/placeholder.png' %}" alt="Log a Day Example" />
+  <p class="lead">A Django starter project with batteries.</p>
+</div>
+{% endblock content %}
