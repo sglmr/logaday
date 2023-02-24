@@ -5,5 +5,6 @@ whitenoise[brotli]
 psycopg2-binary~=2.9.5
 
 # My additions
-gunicorn~=20.1
-environs[django]~=9.5
+gunicorn
+environs
+environs[django]
