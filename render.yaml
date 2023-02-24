@@ -27,5 +27,5 @@ services:
 databases:
 - name: logaday-db
   plan: free
-  databaseName: logaday-db
-  user: logaday-db
+  databaseName: logadaydb
+  user: logadaydb
