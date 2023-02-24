@@ -10,16 +10,16 @@ env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-SECRET_KEY
-SECRET_KEY = env.str("DJANGO_SECRET_KEY", get_random_secret_key())
+SECRET_KEY = env.str("DJANGO_SECRET_KEY", default=get_random_secret_key())
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = env.bool("DJANGO_DEBUG", False)
+DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 if DEBUG:
     ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 else:
-    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", [])
+    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = [
@@ -122,24 +122,39 @@ USE_TZ = True
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-# https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
-
-# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [BASE_DIR / "static"]
-
-# http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Django 4.2+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": STATICFILES_STORAGE,
+    },
+}
 
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    DEFAULT_FROM_EMAIL = "stephen@logaday.net"
+    email = env.dj_email_url("EMAIL_URL", default="smtp://")
+    EMAIL_HOST = email["EMAIL_HOST"]
+    EMAIL_PORT = email["EMAIL_PORT"]
+    EMAIL_HOST_PASSWORD = email["EMAIL_HOST_PASSWORD"]
+    EMAIL_HOST_USER = email["EMAIL_HOST_USER"]
+    EMAIL_USE_TLS = email["EMAIL_USE_TLS"]
+
+# TODO: remove this after testing
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # django-debug-toolbar
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
 # https://docs.djangoproject.com/en/dev/ref/settings/#internal-ips
-INTERNAL_IPS = ["127.0.0.1"]
+if DEBUG:
+    INTERNAL_IPS = ["127.0.0.1"]
 
 # https://docs.djangoproject.com/en/dev/topics/auth/customizing/#substituting-a-custom-user-model
 AUTH_USER_MODEL = "accounts.CustomUser"
@@ -160,6 +175,10 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = "optional"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+if DEBUG:
+    ACCOUNT_EMAIL_VERIFICATION = "optional"
+else:
+    ACCOUNT_EMAIL_VERIFICATION = "mandatory"
