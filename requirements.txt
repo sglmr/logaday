@@ -1,22 +1,9 @@
 # Original
-# crispy-bootstrap5==0.7
 Django~=4.1.5
 django-allauth~=0.52.0
-# django-crispy-forms==1.14.0
-django-debug-toolbar~=3.8.1
 whitenoise[brotli]
 psycopg2-binary~=2.9.5
 
 # My additions
 gunicorn~=20.1
 environs[django]~=9.5
-
-# Development
-black~=23.1
-flake8~=6.0
-coverage~=7.1
-pytest~=7.2
-pytest-randomly~=3.12
-pytest-xdist~=3.2
-pytest-django~=4.5
-pytest-cov~=4.0
