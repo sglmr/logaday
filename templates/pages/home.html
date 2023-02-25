@@ -3,9 +3,22 @@
 
 {% block title %}Home page{% endblock title %}
 
+{% block nav %}<br>{% endblock nav %}
+
 {% block content %}
-<div>
-  <img style="max-width:500px;" src="{% static 'images/placeholder.png' %}" alt="Log a Day Example" />
-  <p>Check it out!</p>
-</div>
+<h2>A fast web app for short-form daily notes.</h2>
+
+<p>
+  <a href="{% url 'account_login' %}">Log in</a>
+  <a href="{% url 'account_signup' %}">Sign up</a>
+</p>
+
+<p>
+  Write down daily reflections, achievements, or accomplishments. Think like a
+  journal, but fast and to the point.
+</p>
+<p>
+  Because after all, <i>"We are what we repeatedly do..."</i>
+</p>
+<h4>Minimal javascript, css, and no trackers.</h4>
 {% endblock content %}

@@ -1,6 +1,7 @@
 from pathlib import Path
 from environs import Env
 from django.core.management.utils import get_random_secret_key
+from django.urls import reverse_lazy
 
 
 env = Env(expand_vars=True)
@@ -14,6 +15,10 @@ SECRET_KEY = env.str("DJANGO_SECRET_KEY", default=get_random_secret_key())
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
+if DEBUG:
+    DEBUG_TOOLBAR = env.bool("DJANGO_DBUG_TOOLBAR", default=True)
+else:
+    DEBUG_TOOLBAR = False
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 if DEBUG:
@@ -55,7 +60,7 @@ MIDDLEWARE = [
 
 
 # django-debug-toolbar
-if DEBUG:
+if DEBUG_TOOLBAR:
     INSTALLED_APPS.append("debug_toolbar")
     INTERNAL_IPS = ["127.0.0.1"]
     MIDDLEWARE.insert(2, "debug_toolbar.middleware.DebugToolbarMiddleware")
@@ -176,7 +181,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = reverse_lazy("log:update_today")
 LOGOUT_REDIRECT_URL = "/"
 
 if DEBUG:

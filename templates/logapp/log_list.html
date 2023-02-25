@@ -7,7 +7,8 @@
 
 {% for object in objects %}
 <strong>{{ object.title }}</strong>
-<div>{{ object.date }}</div>
+<br>
+{{ object.date }}
 <blockquote>
     {% for line in object.content_lines %}
     {{ line }}<br>
