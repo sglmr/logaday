@@ -16,7 +16,7 @@ SECRET_KEY = env.str("DJANGO_SECRET_KEY", default=get_random_secret_key())
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 if DEBUG:
-    DEBUG_TOOLBAR = env.bool("DJANGO_DBUG_TOOLBAR", default=True)
+    DEBUG_TOOLBAR = env.bool("DJANGO_DEBUG_TOOLBAR", default=True)
 else:
     DEBUG_TOOLBAR = False
 
@@ -132,8 +132,8 @@ USE_L10N = True
 USE_TZ = True
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
