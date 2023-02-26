@@ -6,23 +6,27 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <title>{% block title %}DjangoX{% endblock title %}</title>
+  <title>{% block head_title %}Log a day{% endblock head_title %}</title>
   <meta name="description"
     content="A webapp for simple daily logs for accomplishments, achievements, reflections, and more.">
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+  {% block extra_head %}{% endblock extra_head %}
 
   {% block css %}
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="{% static 'css/basic.css' %}">
   {% endblock %}
+
 </head>
 
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <h1>Log a Day!</h1>
+  {% block body %}
   <header>
-    <h1>Log a Day!</h1>
     {% block nav %}
 
-    <a href="{% url 'pages:home' %}">Home</a>
+
+    <a href="{% url 'home' %}">Home</a>
 
     {% if user.is_authenticated %}
 
@@ -30,7 +34,7 @@
 
     <a href="{% url 'log:list' %}">All</a>
 
-    <a href="{% url 'pages:profile' %}">{{ user.email }}</a>
+    <a href="{% url 'profile' %}">{{ user.email }}</a>
 
     {% else %}
 
@@ -48,6 +52,9 @@
     {% endblock content %}
   </main>
 
+  {% endblock body %}
+  {% block extra_body %}
+  {% endblock extra_body %}
   <footer>
     <small>
       &copy; 2023-{% now "Y" %} | <a href="https://github.com/sglmr/logaday">Source Code</a>

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # Third-party
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
     # Local
     "accounts",
     "pages",
@@ -167,7 +168,6 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 SITE_ID = 1
 
 
-ACCOUNT_LOGOUT_REDIRECT_URL = "home"
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
@@ -187,7 +187,6 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
 
 LOGIN_REDIRECT_URL = reverse_lazy("log:update_today")
-LOGOUT_REDIRECT_URL = "/"
 
 # Production launch security settings
 if not DEBUG:

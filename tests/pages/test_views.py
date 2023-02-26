@@ -10,7 +10,7 @@ from pytest_django.asserts import assertTemplateUsed, assertContains
 @pytest.fixture
 @pytest.mark.django_db
 def index(client):
-    yield client.get(reverse("pages:home"))
+    yield client.get(reverse("home"))
 
 
 @pytest.mark.django_db
@@ -38,7 +38,7 @@ def test_home_page_url_contents(index):
 # -------------------------------
 @pytest.fixture
 def profile_page_url():
-    yield reverse("pages:profile")
+    yield reverse("profile")
 
 
 @pytest.mark.django_db
