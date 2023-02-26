@@ -6,6 +6,15 @@
     --width: 720px;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #01242e;
+        --heading-color: #cfcfcf;
+        --text-color: #ddd;
+        --accent-color: #4fb0e1;
+    }
+}
+
 body {
     margin: 0 auto;
     max-width: 720px;
@@ -57,6 +66,7 @@ h3 {
     font-size: 1.125em;
 }
 
+strong,
 h4 {
     font-size: 1em;
 }
@@ -80,6 +90,7 @@ label {
 
 textarea,
 input {
+    font-size: 1em;
     font-family: inconsolata, monospace;
     border-radius: .5em;
     padding: .75em;
@@ -89,7 +100,8 @@ input {
 textarea,
 input:not([type="submit"]) {
     border: 1px dashed var(--accent-color);
-
+    background-color: inherit;
+    color: inherit;
 }
 
 textarea {

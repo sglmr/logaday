@@ -24,9 +24,6 @@
     <strong>
       <a href="{% url 'pages:home' %}">Home</a>
     </strong>
-    <strong>
-      <a href="{% url 'pages:about' %}">About</a>
-    </strong>
     {% if user.is_authenticated %}
     <strong>
       <a href="{% url 'log:update_today' %}">Today</a>
