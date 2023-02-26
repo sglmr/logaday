@@ -8,9 +8,9 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #01242e;
-        --heading-color: #cfcfcf;
-        --text-color: #ddd;
+        --background-color: #00363d;
+        --heading-color: #ddd;
+        --text-color: #ccc;
         --accent-color: #4fb0e1;
     }
 }
@@ -19,7 +19,7 @@ body {
     margin: 0 auto;
     max-width: 720px;
     max-width: var(--width);
-    font-family: system-ui;
+    font-family: Verdana, sans-serif;
     line-height: 1.5;
     padding: 2.5em;
     background-color: var(--background-color);
@@ -40,7 +40,7 @@ body {
 }
 
 header {
-    margin-block-end: 1em;
+    margin-block-end: 2em;
 }
 
 h1,
@@ -50,7 +50,6 @@ h4,
 h5,
 h6,
 strong {
-    font-family: Verdana, sans-serif;
     color: var(--heading-color);
 }
 
@@ -73,7 +72,7 @@ h4 {
 
 strong+strong,
 a+a {
-    padding-left: 1.25em;
+    margin-left: 1.25em;
 }
 
 a {

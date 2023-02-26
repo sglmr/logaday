@@ -21,26 +21,23 @@
   <header>
     <h1>Log a Day!</h1>
     {% block nav %}
-    <strong>
-      <a href="{% url 'pages:home' %}">Home</a>
-    </strong>
+
+    <a href="{% url 'pages:home' %}">Home</a>
+
     {% if user.is_authenticated %}
-    <strong>
-      <a href="{% url 'log:update_today' %}">Today</a>
-    </strong>
-    <strong>
-      <a href="{% url 'log:list' %}">All</a>
-    </strong>
-    <strong>
-      <a href="{% url 'pages:profile' %}">{{ user.email }}</a>
-    </strong>
+
+    <a href="{% url 'log:update_today' %}">Today</a>
+
+    <a href="{% url 'log:list' %}">All</a>
+
+    <a href="{% url 'pages:profile' %}">{{ user.email }}</a>
+
     {% else %}
-    <strong>
-      <a href="{% url 'account_login' %}">Log in</a>
-    </strong>
-    <strong>
-      <a href="{% url 'account_signup' %}">Sign up</a>
-    </strong>
+
+    <a href="{% url 'account_login' %}">Log in</a>
+
+    <a href="{% url 'account_signup' %}">Sign up</a>
+
     {% endif %}
     {% endblock nav %}
   </header>

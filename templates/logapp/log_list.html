@@ -3,17 +3,20 @@
 {% block title %}All Logs{% endblock %}
 
 {% block content %}
-<h1>All Logs</h1>
+<h2>All Logs</h2>
 
 {% for object in objects %}
-<strong>{{ object.title }}</strong>
-<br>
-{{ object.date }}
+<small>
+    {{ object.date_y_m_d }}
+</small>
+<span style="margin-left:1em;">{{ object.title }}</span>
+
 <blockquote>
     {% for line in object.content_lines %}
     {{ line }}<br>
     {% endfor %}
 </blockquote>
+<br>
 {% endfor %}
 
 {% endblock content %}
