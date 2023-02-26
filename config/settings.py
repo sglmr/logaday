@@ -125,9 +125,6 @@ TIME_ZONE = "UTC"
 # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-USE_I18N
 USE_I18N = True
 
-# https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
-USE_L10N = True
-
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 
@@ -168,6 +165,8 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 # django-allauth config
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
+
+
 ACCOUNT_LOGOUT_REDIRECT_URL = "home"
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -175,19 +174,20 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     "allauth.account.auth_backends.AuthenticationBackend",
 )
-ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = "username"
+
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+if not DEBUG:
+    ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+    ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+    ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+
+
 LOGIN_REDIRECT_URL = reverse_lazy("log:update_today")
 LOGOUT_REDIRECT_URL = "/"
-
-if DEBUG:
-    ACCOUNT_EMAIL_VERIFICATION = "optional"
-else:
-    ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 # Production launch security settings
 if not DEBUG:

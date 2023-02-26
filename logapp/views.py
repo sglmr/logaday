@@ -1,9 +1,8 @@
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.template.response import TemplateResponse
 from django.views.decorators.http import require_http_methods
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import datetime
-from django.http import HttpResponse
 
 from logapp.models import get_or_create_users_log, Log
 

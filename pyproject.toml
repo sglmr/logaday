@@ -1,8 +1,9 @@
 [tool.pytest.ini_options]
 django_debug_mode = true
 DJANGO_SETTINGS_MODULE = "config.settings"
-testpaths = ["accounts/tests.py"]
-python_files = "test_*.py"
+testpaths = [
+    "tests",
+]
 addopts = "-n auto"
 # addopts = "-n auto --cov=. --cov-report=term --cov-fail-under=90"
 
