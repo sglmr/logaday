@@ -4,7 +4,10 @@
     --text-color: #555;
     --accent-color: #089ce7;
     --width: 720px;
+    --font-size: 1.125em;
 }
+
+
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -21,11 +24,19 @@ body {
     max-width: var(--width);
     font-family: Verdana, sans-serif;
     line-height: 1.5;
-    padding: 2.5em;
+    /* top | right | bottom | left */
+    padding: 2.5em .5em 1em .5em;
     background-color: var(--background-color);
     color: var(--text-color);
-    font-size: 1.125em;
+    font-size: var(--font-size);
 }
+
+@media (max-width: 500px) {
+    body {
+        font-size: .875em;
+    }
+}
+
 
 /* Reset margins to 0 */
 * {
