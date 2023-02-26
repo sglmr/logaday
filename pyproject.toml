@@ -1,0 +1,17 @@
+[tool.pytest.ini_options]
+django_debug_mode = true
+DJANGO_SETTINGS_MODULE = "config.settings"
+testpaths = ["accounts/tests.py"]
+python_files = "test_*.py"
+addopts = "-n auto"
+# addopts = "-n auto --cov=. --cov-report=term --cov-fail-under=90"
+
+[tool.coverage.run]
+source = "."
+omit = [
+    "app/tests/*",
+    "app/admin.py",
+    "config/*",
+    "manage.py",
+    ".venv/*",
+    ]
