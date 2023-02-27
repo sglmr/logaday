@@ -2,6 +2,7 @@ from django.urls import path, register_converter, re_path
 from django.utils.timezone import datetime
 
 from .views import record_form_view, record_update_view, record_list_view
+from .signals import create_records_settings_signal
 
 
 class DateConverter:
