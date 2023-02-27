@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block head_title %}Update Record{% endblock head_title %}
+
+{% block content %}
+<h2>Update Record</h2>
+
+{% include 'records/update_form.html' with record=record %}
+
+{% endblock content %}

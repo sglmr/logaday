@@ -1,0 +1,131 @@
+:root {
+    --background-color: #fff;
+    --heading-color: #222;
+    --text-color: #555;
+    --accent-color: #089ce7;
+    --width: 720px;
+    --font-size: 1.125em;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #00363d;
+        --heading-color: #ddd;
+        --text-color: #ccc;
+        --accent-color: #4fb0e1;
+    }
+}
+
+body {
+    margin: 0 auto;
+    max-width: 720px;
+    max-width: var(--width);
+    font-family: Verdana, sans-serif;
+    line-height: 1.5;
+    /* top | right | bottom | left */
+    padding: 2.5em .5em 1em .5em;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--font-size);
+}
+
+@media (max-width: 500px) {
+    body {
+        font-size: .875em;
+    }
+}
+
+
+/* Reset margins to 0 */
+* {
+    margin-block-end: 0;
+    margin-block-start: 0;
+}
+
+/* owl selector for margins */
+*+* {
+    margin-block-start: 1em;
+    margin-block-end: .25em;
+}
+
+header {
+    margin-block-end: 2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+    color: var(--heading-color);
+}
+
+h1 {
+    font-size: 1.675em;
+}
+
+h2 {
+    font-size: 1.375em;
+}
+
+h3 {
+    font-size: 1.125em;
+}
+
+strong,
+h4 {
+    font-size: 1em;
+}
+
+strong+strong,
+a+a {
+    margin-left: 1.25em;
+}
+
+a {
+    color: var(--accent-color);
+}
+
+
+textarea,
+input,
+label {
+    display: block;
+    color: inherit;
+}
+
+textarea,
+input {
+    font-size: 1em;
+    font-family: inconsolata, monospace;
+    border-radius: .5em;
+    padding: .75em;
+}
+
+
+textarea,
+input:not([type="submit"]) {
+    border: 1px dashed var(--accent-color);
+    background-color: inherit;
+    color: inherit;
+}
+
+textarea {
+    height: 20em;
+}
+
+blockquote {
+    padding-left: .75em;
+    border-left: .2em solid var(--accent-color);
+    margin-inline: 1em 1em;
+}
+
+
+footer {
+    margin-top: 2em;
+    text-align: center;
+}

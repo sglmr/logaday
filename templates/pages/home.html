@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}Home page{% endblock head_title %}
+
+{% block nav %}<br>{% endblock nav %}
+
+{% block content %}
+<h2>A fast web app for short-form daily notes.</h2>
+
+<p>
+  <a href="{% url 'account_login' %}">Log in</a>
+  <a href="{% url 'account_signup' %}">Sign up</a>
+</p>
+
+<p>
+  Write down daily reflections, achievements, or accomplishments. Think like a
+  journal, but fast and to the point.
+</p>
+<p>
+  Because after all, <i>"We are what we repeatedly do..."</i>
+</p>
+<h4>Minimal javascript, css, and no trackers.</h4>
+{% endblock content %}
