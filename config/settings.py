@@ -1,5 +1,5 @@
 from pathlib import Path
-from environs import Env
+from environs import Env, EnvError
 from django.core.management.utils import get_random_secret_key
 from django.urls import reverse_lazy
 
@@ -144,9 +144,7 @@ STORAGES = {
 
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-if DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-else:
+try:
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     DEFAULT_FROM_EMAIL = env.str("DEFAULT_FROM_EMAIL")
     EMAIL_HOST = env.str("EMAIL_HOST")
@@ -154,6 +152,11 @@ else:
     EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
     EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
     EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
+except EnvError:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+finally:
+    if DEBUG:
+        EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # https://docs.djangoproject.com/en/dev/topics/auth/customizing/#substituting-a-custom-user-model
