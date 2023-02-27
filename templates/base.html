@@ -6,9 +6,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <title>{% block head_title %}Log a day{% endblock head_title %}</title>
-  <meta name="description"
-    content="A webapp for simple daily logs for accomplishments, achievements, reflections, and more.">
+  <title>{% block head_title %}Record my Day{% endblock head_title %}</title>
+  <meta name="description" content="A webapp for recording daily accomplishments, achievements, reflections, and more.">
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
   {% block extra_head %}{% endblock extra_head %}
 
@@ -20,7 +19,7 @@
 </head>
 
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-  <h1>Log a Day!</h1>
+  <h1>Record my Day!</h1>
   {% block body %}
   <header>
     {% block nav %}
@@ -30,9 +29,9 @@
 
     {% if user.is_authenticated %}
 
-    <a href="{% url 'log:update_today' %}">Today</a>
+    <a href="{% url 'records:update_today' %}">Today</a>
 
-    <a href="{% url 'log:list' %}">All</a>
+    <a href="{% url 'records:list' %}">All</a>
 
     <a href="{% url 'profile' %}">{{ user.email }}</a>
 
@@ -57,7 +56,7 @@
   {% endblock extra_body %}
   <footer>
     <small>
-      &copy; 2023-{% now "Y" %} | <a href="https://github.com/sglmr/logaday">Source Code</a>
+      &copy; 2023-{% now "Y" %}
     </small>
   </footer>
 

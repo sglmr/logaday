@@ -37,14 +37,17 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # Third-party
+    "authtools",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     # Local
-    "accounts",
     "pages",
-    "logapp",
+    "records",
 ]
+
+# https://docs.djangoproject.com/en/dev/topics/auth/customizing/#substituting-a-custom-user-model
+AUTH_USER_MODEL = "authtools.User"
 
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
@@ -159,9 +162,6 @@ finally:
         EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
-# https://docs.djangoproject.com/en/dev/topics/auth/customizing/#substituting-a-custom-user-model
-AUTH_USER_MODEL = "accounts.CustomUser"
-
 # django-allauth config
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -173,13 +173,15 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-ACCOUNT_AUTHENTICATION_METHOD = "email"
+
 if not DEBUG:
     ACCOUNT_EMAIL_VERIFICATION = "mandatory"
     ACCOUNT_CONFIRM_EMAIL_ON_GET = True
     ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
@@ -187,7 +189,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400  # 1 day in seconds
 
 
-LOGIN_REDIRECT_URL = reverse_lazy("log:update_today")
+LOGIN_REDIRECT_URL = reverse_lazy("records:update_today")
 
 # Production launch security settings
 if not DEBUG:

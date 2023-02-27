@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head_title %}All Records{% endblock head_title %}
+
+{% block content %}
+<h2>All Records</h2>
+
+{% for record in records %}
+<small>
+    {{ record.date_y_m_d }}
+</small>
+<span style="margin-left:1em;">{{ record.title }}</span>
+
+<blockquote>
+    {% for line in record.content_lines %}
+    {{ line }}<br>
+    {% endfor %}
+</blockquote>
+<br>
+{% endfor %}
+
+{% endblock content %}
