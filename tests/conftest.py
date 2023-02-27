@@ -1,7 +1,9 @@
 import pytest
-from authtools.models import User
+from django.contrib.auth import get_user_model
 from records.models import Record
 from django.utils import timezone
+
+User = get_user_model()
 
 
 @pytest.fixture

@@ -1,7 +1,6 @@
 import pytest
 from records.models import Record
 from django.urls import reverse
-from django.db.models import Q
 from pytest_django.asserts import assertTemplateUsed, assertContains, assertNotContains
 
 
