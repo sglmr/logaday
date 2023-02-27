@@ -1,5 +1,5 @@
 import pytest
-from allauth.models import User
+from authtools.models import User
 from records.models import Record
 from django.utils import timezone
 
