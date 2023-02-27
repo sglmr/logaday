@@ -24,8 +24,21 @@ def recs_fixt(user1, user2):
     )
 
     Record.objects.create(
+        user=user1,
+        date="1900-02-01",
+        title="old_user1_post",
+        content="user1_old_content",
+    )
+
+    Record.objects.create(
         user=user2,
         date=timezone.now(),
         title="user2_now_title",
         content="user2_now_content",
+    )
+    Record.objects.create(
+        user=user2,
+        date="1900-02-01",
+        title="old_user2_post",
+        content="user2_old_content",
     )

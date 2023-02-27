@@ -4,15 +4,24 @@ DJANGO_SETTINGS_MODULE = "config.settings"
 testpaths = [
     "tests",
 ]
-addopts = "-n auto"
-# addopts = "-n auto --cov=. --cov-report=term --cov-fail-under=90"
+python_files = ["test_*.py"]
+# addopts = "-n auto"
+addopts = "-n auto --cov=pages --cov=records --cov-report=term"
 
 [tool.coverage.run]
-source = "."
+source = ["."]
 omit = [
-    "app/tests/*",
-    "app/admin.py",
     "config/*",
     "manage.py",
     ".venv/*",
+    "tests/*",
+    "records/migrations/*",
+    "__init__.py"
     ]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+skip_covered = true
+sort = "Miss"
+precision = 1
