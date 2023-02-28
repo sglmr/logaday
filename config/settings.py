@@ -191,7 +191,7 @@ ACCOUNT_ALLOW_SIGNUPS = env.bool("DJANGO_ALLOW_SIGNUPS", False)
 ACCOUNT_ADAPTER = "config.account_adapter.CustomAccountAdapter"
 
 
-LOGIN_REDIRECT_URL = reverse_lazy("records:update_today")
+LOGIN_REDIRECT_URL = reverse_lazy("records:edit_today")
 
 # Production launch security settings
 if not DEBUG:
