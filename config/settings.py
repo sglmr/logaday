@@ -134,9 +134,13 @@ USE_TZ = True
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+if DEBUG:
+    STATIC_ROOT = BASE_DIR / "staticfiles"
+else:
+    STATIC_ROOT = env.str("DJANGO_STATIC_ROOT")
 
 # Django 4.2+
 STORAGES = {
