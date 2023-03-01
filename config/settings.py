@@ -42,12 +42,13 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     # Local
+    "accounts",
     "pages",
     "records",
 ]
 
 # https://docs.djangoproject.com/en/dev/topics/auth/customizing/#substituting-a-custom-user-model
-AUTH_USER_MODEL = "authtools.User"
+AUTH_USER_MODEL = "accounts.User"
 
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
@@ -191,7 +192,7 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400  # 1 day in seconds
-ACCOUNT_ALLOW_SIGNUPS = env.bool("DJANGO_ALLOW_SIGNUPS", False)
+# ACCOUNT_ALLOW_SIGNUPS = env.bool("DJANGO_ALLOW_SIGNUPS", False)
 ACCOUNT_ADAPTER = "config.account_adapter.CustomAccountAdapter"
 
 
