@@ -8,3 +8,14 @@ psycopg2-binary~=2.9.5
 # My additions
 gunicorn~=20.1.0
 environs[django]~=9.5.0
+
+# Dev
+django-debug-toolbar~=3.8.1
+black
+flake8
+coverage~=7.1
+pytest~=7.2
+pytest-randomly~=3.12
+pytest-xdist~=3.2
+pytest-django~=4.5
+pytest-cov~=4.0
