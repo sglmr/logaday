@@ -21,10 +21,10 @@ else:
     DEBUG_TOOLBAR = False
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-if DEBUG:
-    ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
-else:
-    ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
+
+ALLOWED_HOSTS = env.list(
+    "DJANGO_ALLOWED_HOSTS", default=["localhost", "0.0.0.0", "127.0.0.1"]
+)
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = [
@@ -65,7 +65,7 @@ MIDDLEWARE = [
 
 
 # django-debug-toolbar
-if DEBUG_TOOLBAR:
+if DEBUG_TOOLBAR and DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
     INTERNAL_IPS = ["127.0.0.1"]
     MIDDLEWARE.insert(2, "debug_toolbar.middleware.DebugToolbarMiddleware")
@@ -135,13 +135,9 @@ USE_TZ = True
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_URL = "/static/"
-
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-if DEBUG:
-    STATIC_ROOT = BASE_DIR / "staticfiles"
-else:
-    STATIC_ROOT = env.str("DJANGO_STATIC_ROOT")
+STATIC_ROOT = env.str("DJANGO_STATIC_ROOT", BASE_DIR / "staticfiles")
 
 # Django 4.2+
 STORAGES = {
@@ -192,7 +188,7 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400  # 1 day in seconds
-# ACCOUNT_ALLOW_SIGNUPS = env.bool("DJANGO_ALLOW_SIGNUPS", False)
+ACCOUNT_ALLOW_SIGNUPS = env.bool("DJANGO_ALLOW_SIGNUPS", False)
 ACCOUNT_ADAPTER = "config.account_adapter.CustomAccountAdapter"
 
 
