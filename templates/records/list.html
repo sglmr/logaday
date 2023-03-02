@@ -9,7 +9,11 @@
 <small>
     {{ record.date_y_m_d }}
 </small>
-<span style="margin-left:1em;">{{ record.title }}</span>
+<span style="margin-left:1em;">
+    <a href="{% url 'records:edit' record.date %}">
+        {{ record.title }}
+    </a>
+</span>
 
 <blockquote>
     {% for line in record.content_lines %}
