@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# exit on error
-set -o errexit
-
-#!/bin/bash
-
 # Go to the correct directory
 cd /home/happy/recordmyday
 
