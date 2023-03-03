@@ -1,5 +1,5 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
@@ -83,7 +83,7 @@ class Record(models.Model):
 
     def get_absolute_url(self):
         # TODO: return reverse("view_record", kwargs={"pk": self.pk})
-        ...
+        pass  # pragma: no cover
 
     @property
     def content_lines(self):

@@ -3,25 +3,24 @@ django_debug_mode = true
 DJANGO_SETTINGS_MODULE = "config.settings"
 testpaths = [
     "tests",
+    "*/tests",
 ]
 python_files = ["test_*.py"]
 # addopts = "-n auto"
-addopts = "-n auto --cov=pages --cov=records --cov-report=term"
+addopts = "-n auto --cov --cov-report=term"
 
 [tool.coverage.run]
 source = ["."]
-omit = [
-    "config/*",
-    "manage.py",
-    ".venv/*",
-    "tests/*",
-    "records/migrations/*",
-    "__init__.py"
-    ]
+
 
 [tool.coverage.report]
-fail_under = 83
+fail_under = 90
 show_missing = true
 skip_covered = true
 sort = "Miss"
 precision = 1
+omit = [
+    "*conftest.py",
+    "config/*",
+    "manage.py",
+    ]

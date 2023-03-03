@@ -1,7 +1,8 @@
 import pytest
-from records.models import Record
 from django.urls import reverse
-from pytest_django.asserts import assertTemplateUsed, assertContains, assertNotContains
+from pytest_django.asserts import assertContains, assertNotContains, assertTemplateUsed
+
+from records.models import Record
 
 
 #      Records List Page Tests
@@ -53,3 +54,38 @@ class TestRecordsListPage:
         for record in Record.objects.all().exclude(user=user2):
             assertNotContains(r, record.title)
             assertNotContains(r, record.content)
+
+
+#     Record Edit Page Tests
+# -------------------------------
+@pytest.mark.django_db
+class TestRecordEditPage:
+    @pytest.fixture
+    def edit_url(self):
+        yield reverse("records:edit", kwargs={"date": "2022-01-01"})
+
+    def test_redirect_without_login(self, client, edit_url):
+        r = client.get(edit_url)
+        assert r.status_code == 302
+        assert r.url == "/accounts/login/?next=/records/2022-01-01/"
+
+    def test_template_used(self, client, user1, edit_url):
+        client.force_login(user1)
+        r = client.get(edit_url)
+        assert r.status_code == 200
+        assertTemplateUsed(r, "records/workbench.html")
+        assertTemplateUsed(r, "records/record_form_partial.html")
+
+    def test_edit_form_contains_correct_content(self, client, user1, recs_fixt):
+
+        r = Record.objects.filter(user=user1).last()
+        client.force_login(user1)
+        response = client.get(f"/records/{r.date}/")
+        assertContains(response, r.title)
+        assertContains(response, r.content)
+
+    def test_edit_without_date_creates_todays_record(self, client, user1):
+        assert Record.objects.all().count() == 0
+        client.force_login(user1)
+        client.get("/records/")
+        assert Record.objects.all().count() == 1

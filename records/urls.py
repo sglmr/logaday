@@ -1,15 +1,15 @@
-from django.urls import path, register_converter, re_path
+from django.urls import path, re_path, register_converter
 from django.utils.timezone import datetime
 
 from .views import (
-    record_form_save_view,
-    record_form_change_view,
-    record_list_view,
     record_editor_view,
+    record_form_change_view,
+    record_form_save_view,
+    record_list_view,
 )
 
 
-class DateConverter:
+class DateConverter:  # pragma: no cover
     regex = "\d{4}-\d{1,2}-\d{1,2}"
     format = "%Y-%m-%d"
 

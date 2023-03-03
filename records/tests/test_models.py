@@ -1,6 +1,10 @@
 import pytest
-from records.models import RecordSetting, Record
+from django.contrib.auth import get_user_model
+from django.utils import timezone
 
+from records.models import Record, RecordSetting
+
+User = get_user_model()
 
 #    Record Settings Tests
 # -------------------------------
@@ -32,3 +36,26 @@ class TestRecordsModel:
 
     def test_record__str__(self, _record):
         assert f"{_record}" == _record.title
+
+    def test_record_without_titles_title(self, user1):
+        # title should be "pretty date" if not supplied
+        r = Record.objects.create(
+            user=user1, content="blah", date=timezone.now().date()
+        )
+        assert r.title == r.pretty_date
+
+    def test_content_after_record_creation(self, user1):
+        r = Record.objects.create(
+            user=user1,
+            date=timezone.now().date(),
+            title="user1_now_title",
+            content="user1_now_content",
+        )
+        assert r.date == timezone.now().date()
+        assert r.user == user1
+        assert r.title == "user1_now_title"
+        assert r.content == "- user1_now_content"
+
+    def test_default_content_on_record_for_user(self, user1):
+        r = Record.objects.create(user=user1, date=timezone.now().date())
+        assert r.content == "# Personal\n- \n\n# Work\n- "
