@@ -24,3 +24,6 @@ omit = [
     "config/*",
     "manage.py",
     ]
+
+[tool.ruff]
+unfixable = ["F401"]
