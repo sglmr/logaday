@@ -20,7 +20,7 @@ def record_form_change_view(request: HttpRequest) -> TemplateResponse:
         return TemplateResponse(
             request, "records/record_form_partial.html", {"form": form}
         )
-    except AttributeError:
+    except (AttributeError, TypeError):
         # Do nothing if the date is invalid
         h = HttpResponse("")
         h.status_code = 204
