@@ -1,7 +1,6 @@
 import pytest
 from django.urls import reverse
-from pytest_django.asserts import assertTemplateUsed, assertContains
-
+from pytest_django.asserts import assertContains, assertRedirects, assertTemplateUsed
 
 #       Home Page Tests
 # -------------------------------
@@ -9,8 +8,14 @@ from pytest_django.asserts import assertTemplateUsed, assertContains
 
 @pytest.fixture
 @pytest.mark.django_db
-def index(client):
-    yield client.get(reverse("home"))
+def index_url(client):
+    yield reverse("home")
+
+
+@pytest.fixture
+@pytest.mark.django_db
+def index(client, index_url):
+    yield client.get(index_url)
 
 
 @pytest.mark.django_db
@@ -32,6 +37,15 @@ def test_home_page_template(index):
 def test_home_page_url_contents(index):
     assertContains(index, reverse("account_login"))
     assertContains(index, reverse("account_signup"))
+
+
+@pytest.mark.django_db
+def test_home_page_redirects_to_edit_today_for_authenticated_user(
+    client, index_url, user1
+):
+    client.force_login(user1)
+    r = client.get(index_url)
+    assertRedirects(response=r, expected_url=reverse("records:edit_today"))
 
 
 #      Profile Page Tests

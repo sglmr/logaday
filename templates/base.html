@@ -24,9 +24,6 @@
   <header>
     {% block nav %}
 
-
-    <a href="{% url 'home' %}">Home</a>
-
     {% if user.is_authenticated %}
 
     <a href="{% url 'records:edit_today' %}">Today</a>
