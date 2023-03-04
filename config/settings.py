@@ -1,8 +1,8 @@
 from pathlib import Path
-from environs import Env, EnvError
+
 from django.core.management.utils import get_random_secret_key
 from django.urls import reverse_lazy
-
+from environs import Env, EnvError
 
 env = Env(expand_vars=True)
 env.read_env()
@@ -137,7 +137,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATIC_ROOT = env.str("DJANGO_STATIC_ROOT", BASE_DIR / "staticfiles")
+STATIC_ROOT = env.str("DJANGO_STATIC_ROOT", f"{BASE_DIR / 'staticfiles'}")
 
 # Django 4.2+
 STORAGES = {
