@@ -5,6 +5,7 @@
     --accent-color: #089ce7;
     --width: 720px;
     --font-size: 1.125em;
+    --border: 1px dashed var(--accent-color);
 }
 
 
@@ -93,29 +94,28 @@ a {
 
 textarea,
 input,
-label {
+select,
+label,
+button {
     display: block;
     color: inherit;
+    font-family: inherit;
 }
 
 label {
     margin-block-start: 2em;
+    font-weight:bolder;
+    font-size:smaller;
+    padding-left:.25em;
 }
 
 textarea,
-input, select {
-    font-family: inherit;
+input, select, button { 
     font-size: 1em;
     border-radius: .5em;
     padding: .75em;
     margin-block-start: .5em;
-
-}
-
-
-textarea,
-input:not([type="submit"]) {
-    border: 1px dashed var(--accent-color);
+    border: var(--border);
     background-color: inherit;
     color: inherit;
 }
@@ -132,10 +132,20 @@ blockquote {
 
 
 footer {
-    margin-top: 2em;
+    margin-top: 5em;
     text-align: center;
 }
 
 form span.helptext {
     font-size: .75em;
+}
+
+input[type="submit"],
+button[type="submit"] {
+    margin-block-start:1.5em;
+    font-weight:bolder;
+    background-color:var(--accent-color);
+    color:var(--background-color);
+    padding:.375em;
+
 }
