@@ -1,10 +1,11 @@
-from django.views.generic import TemplateView
-from django.http import HttpRequest, HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.http import HttpRequest
+from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.views.decorators.http import require_http_methods
-from django.contrib.auth.decorators import login_required
-from django.utils.timezone import datetime
-from django.shortcuts import redirect
+
+from records.forms import RecordSettingForm
+from records.models import RecordSetting
 
 
 @require_http_methods(["GET"])
@@ -15,6 +16,18 @@ def home_page_view(request: HttpRequest) -> TemplateResponse:
 
 
 @login_required()
-@require_http_methods(["GET"])
+@require_http_methods(["GET", "POST"])
 def profile_page_view(request: HttpRequest) -> TemplateResponse:
-    return TemplateResponse(request, "pages/profile.html")
+    current_settings = get_object_or_404(RecordSetting, user=request.user)
+
+    if request.method == "POST":
+        rs_form = RecordSettingForm(data=request.POST, instance=current_settings)
+        if rs_form.is_valid():
+            rs_form.save(commit=False)
+            rs_form.author = request.user
+            rs_form.save()
+    if request.method == "GET":
+        rs_form = RecordSettingForm(instance=current_settings)
+
+    context = {"record_setting_form": rs_form}
+    return TemplateResponse(request, "pages/profile.html", context=context)

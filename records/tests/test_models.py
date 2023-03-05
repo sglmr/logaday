@@ -1,10 +1,8 @@
 import pytest
-from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 from records.models import Record, RecordSetting
 
-User = get_user_model()
 
 #    Record Settings Tests
 # -------------------------------

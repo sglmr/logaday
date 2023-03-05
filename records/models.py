@@ -14,6 +14,9 @@ def listisize(text: str):
 
 
 class RecordSetting(models.Model):
+
+    DEFAULT_RECORD_SETTING_HEADINGS = "personal, work"
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         related_name="record_settings",
@@ -24,7 +27,8 @@ class RecordSetting(models.Model):
         _("record headings"),
         max_length=300,
         help_text=_("Required. Comma separated list of default headings to use."),
-        default="personal, work",
+        default=DEFAULT_RECORD_SETTING_HEADINGS,
+        blank=True,
     )
 
     class Meta:
@@ -55,9 +59,9 @@ class Record(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    title = models.CharField(_("record title"), max_length=255, blank=True)
-    content = models.TextField(_("record content"), blank=True)
-    date = models.DateField(_("record date"))
+    title = models.CharField(_("title"), max_length=255, blank=True)
+    content = models.TextField(_("content"), blank=True)
+    date = models.DateField(_("date"))
 
     class Meta:
         verbose_name = _("record")

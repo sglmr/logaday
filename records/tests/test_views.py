@@ -2,7 +2,7 @@ import pytest
 from django.urls import reverse
 from pytest_django.asserts import assertContains, assertNotContains, assertTemplateUsed
 
-from records.models import Record
+from records.models import Record, RecordSetting
 
 
 #      Records List Page Tests
@@ -198,3 +198,35 @@ class TestRecordFormSaveView:
         rec = Record.objects.get(user=user1, date="1900-02-01")
         assert rec.title == "update_title"
         assert rec.content == "- update_content1"
+
+
+#   Record Settings Post Headings Changes Tests
+# -----------------------------------------------
+@pytest.mark.django_db
+class TestPostProfileRecordsSettingUpdate:
+    @pytest.fixture
+    def _url_name(self):
+        yield "profile"
+
+    @pytest.fixture
+    def _new_headings(self):
+        yield {"headings": "new, heading"}
+
+    def test_record_settings_form_updates_headings(
+        self, client, user1, _url_name, _new_headings
+    ):
+
+        # Establish user starts with default headings
+        assert (
+            RecordSetting.objects.get(user=user1).headings
+            == RecordSetting.DEFAULT_RECORD_SETTING_HEADINGS
+        )
+
+        # Login as user and post new headings changes1
+        client.force_login(user1)
+        client.post(reverse(_url_name), data=_new_headings)
+
+        # Check new headings
+        assert RecordSetting.objects.get(user=user1).headings == _new_headings.get(
+            "headings"
+        )

@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block head_title %}Home page{% endblock head_title %}
 
-{% block nav %}<br>{% endblock nav %}
+{% block nav %}{% endblock nav %}
 
 {% block content %}
-<h2>A fast web app for short-form daily notes.</h2>
+<h2>A super-fast, personalized "journal"</h2>
 
 <p>
   <a href="{% url 'account_login' %}">Log in</a>
@@ -14,11 +15,12 @@
 </p>
 
 <p>
-  Write down daily reflections, achievements, or accomplishments. Think like a
-  journal, but fast and to the point.
+  Write down daily reflections, achievements, or accomplishments.
 </p>
 <p>
-  Because after all, <i>"We are what we repeatedly do..."</i>
+  It's kind of like your own customizable <a href="https://www.intelligentchange.com/products/the-five-minute-journal">five minute journal</a>, but without a marketing budget and celebrity endorsements.
 </p>
+<img src="{% static 'images/editor_screenshot.png' %}" alt="Screenshot" style="max-width:75%;margin:auto;margin-top:1.5em;margin-bottom:1.5em;display:block;border:var(--border)">
+
 <h4>Minimal javascript, css, and no trackers.</h4>
 {% endblock content %}
