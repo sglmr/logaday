@@ -158,10 +158,6 @@ try:
     EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
 except EnvError:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-finally:
-    if DEBUG:
-        EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 
 # django-allauth config
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id

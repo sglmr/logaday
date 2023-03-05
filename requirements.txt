@@ -4,8 +4,6 @@ django-authtools~=2.0.0
 django-allauth~=0.52.0
 whitenoise[brotli]~=6.3.0
 psycopg2-binary~=2.9.5
-
-# My additions
 gunicorn~=20.1.0
 environs[django]~=9.5.0
 
