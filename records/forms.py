@@ -1,8 +1,23 @@
 from django.forms import ModelForm
-from django.forms.widgets import DateInput, Textarea
+from django.forms.widgets import DateInput, Textarea, TextInput
 from django.urls import reverse_lazy
 
-from .models import Record
+from .models import Record, RecordSetting
+
+
+class RecordSettingForm(ModelForm):
+    class Meta:
+        model = RecordSetting
+        fields = ["headings"]
+        help_texts = {"headings": "(Default headings for new records)"}
+
+        widgets = {
+            "headings": TextInput(
+                attrs={
+                    "style": "width:100%;",
+                }
+            ),
+        }
 
 
 class RecordForm(ModelForm):
@@ -10,8 +25,9 @@ class RecordForm(ModelForm):
         model = Record
         fields = ["date", "title", "content"]
         help_texts = {
-            "title": "(Title changes are auto-saved every 1s)",
-            "content": "(Content changes are auto-saved every 1s)",
+            "title": "Changes autosave every 1s.",
+            "content": "Default values can be changed on your profile."
+            + "  Changes autosave every 1s.",
         }
 
         widgets = {

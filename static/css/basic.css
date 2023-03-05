@@ -103,9 +103,9 @@ label {
 }
 
 textarea,
-input {
+input, select {
+    font-family: inherit;
     font-size: 1em;
-    font-family: inconsolata, monospace;
     border-radius: .5em;
     padding: .75em;
     margin-block-start: .5em;

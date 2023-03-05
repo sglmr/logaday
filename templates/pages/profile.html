@@ -4,8 +4,16 @@
 
 {% block content %}
 <h2>Profile</h2>
-<ul>
-    <li><a href="{% url 'account_change_password' %}">Change password</a></li>
-    <li><a href="{% url 'account_logout' %}">Sign out</a></li>
-</ul>
+<p>Logged in as {{ user.email }}</p>
+<p>
+    <ul>
+        <li><a href="{% url 'account_change_password' %}">Change password</a></li>
+        <li><a href="{% url 'account_logout' %}">Sign out</a></li>
+    </ul>
+</p>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ record_setting_form.as_p }}
+    <input type="submit" value="Update">
+</form>
 {% endblock content %}
