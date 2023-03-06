@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Go to the correct directory
-cd /home/happy/recordmyday
+cd /home/happy/recordaday
 
 # Pull git changes
 git pull
@@ -18,7 +18,7 @@ python manage.py collectstatic --noinput --clear | grep -v 'Deleting'
 
 # Refresh nginx & gunicorn
 echo "Restarting gunicorn & nginx..."
-sudo systemctl restart recordmyday
+sudo systemctl restart recordaday
 sudo systemctl restart caddy
 sudo systemctl daemon-reload
 echo "Done!"
