@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 
-{% block head_title %}Update Record{% endblock head_title %}
+{% block head_title %}Edit{% endblock head_title %}
 
 {% block content %}
-<h2>Update Record</h2>
 
-
-{% include 'records/record_form_partial.html' with form=form %}
+    {% include 'records/record_form_partial.html' with form=form %}
 
 {% endblock content %}

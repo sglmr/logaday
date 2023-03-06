@@ -1,29 +1,31 @@
 :root {
-    --background-color: #fff;
-    --heading-color: #222;
-    --text-color: #555;
-    --accent-color: #089ce7;
+    --background-color: #ffffff;
+    --heading-color: #000000;
+    --text-color: #151515;
+    --accent-color: #e74a00;
     --width: 720px;
     --font-size: 1.125em;
     --border: 1px dashed var(--accent-color);
 }
 
 
-
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #00363d;
-        --heading-color: #ddd;
-        --text-color: #ccc;
-        --accent-color: #4fb0e1;
+    --background-color: #000000;
+    --heading-color: #ff6a00;
+    --text-color: #ff9d00;
+    --accent-color: #ff6a00;
     }
 }
+
+
+
 
 body {
     margin: 0 auto;
     max-width: 720px;
     max-width: var(--width);
-    font-family: Verdana, sans-serif;
+    font-family: Fira Code, Inconsolata, monospace;
     line-height: 1.5;
     /* top | right | bottom | left */
     padding: 2.5em .5em 1em .5em;
@@ -49,10 +51,6 @@ body {
 *+* {
     margin-block-start: 1em;
     margin-block-end: .25em;
-}
-
-header {
-    margin-block-end: 2em;
 }
 
 h1,
