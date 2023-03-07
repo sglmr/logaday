@@ -19,13 +19,11 @@
 }
 
 
-
-
 body {
     margin: 0 auto;
     max-width: 720px;
     max-width: var(--width);
-    font-family: Fira Code, Inconsolata, monospace;
+    font-family: Courier, Inconsolata, monospace;
     line-height: 1.5;
     /* top | right | bottom | left */
     padding: 2.5em .5em 1em .5em;
@@ -40,6 +38,10 @@ body {
     }
 }
 
+header a {
+    font-size: 1.25em;
+    font-weight: bold;
+}
 
 /* Reset margins to 0 */
 * {
@@ -87,6 +89,11 @@ a+a {
 
 a {
     color: var(--accent-color);
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
 }
 
 
