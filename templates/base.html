@@ -28,7 +28,9 @@
 
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
   <header>
-    <img src="{% static 'images/logo_bungee_spice.png' %}" alt="RaD Logo" style="max-height:2em;">
+    <a href="{% url 'home' %}">
+      <img src="{% static 'images/logo_bungee_spice.png' %}" alt="RaD Logo" style="max-height:2em;">
+    </a>
     <br>
     {% block nav %}
       {% if user.is_authenticated %}
