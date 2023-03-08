@@ -2,19 +2,18 @@
     --background-color: #ffffff;
     --heading-color: #000000;
     --text-color: #151515;
-    --accent-color: #d24300;
+    --accent-color: #1067eb;
     --width: 720px;
     --font-size: 1.125em;
     --border: 1px dashed var(--accent-color);
 }
 
-
 @media (prefers-color-scheme: dark) {
     :root {
-    --background-color: #000000;
-    --heading-color: #ff6a00;
-    --text-color: #ff9d00;
-    --accent-color: #ff6a00;
+    --background-color: #0e2830;
+    --heading-color: #dddddd;
+    --text-color: #bbbbbb;
+    --accent-color: #31bbfc;
     }
 }
 
@@ -23,7 +22,7 @@ body {
     margin: 0 auto;
     max-width: 720px;
     max-width: var(--width);
-    font-family: Courier, Inconsolata, monospace;
+    font-family: 'PT Sans', system-ui, sans-serif;
     line-height: 1.5;
     /* top | right | bottom | left */
     padding: 2.5em .5em 1em .5em;
