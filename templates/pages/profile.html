@@ -21,4 +21,12 @@
     <input type="submit" value="Update">
 </form>
 </p>
+
+<hr>
+<br>
+<h3>Export my data</h3>
+<ul>
+    <li><a href="{% url 'records:export' 'csv' %}">csv</a></li>
+    <li><a href="{% url 'records:export' 'json' %}">json</a></li>
+</ul>
 {% endblock content %}

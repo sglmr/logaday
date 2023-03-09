@@ -41,16 +41,16 @@ class RecordSetting(models.Model):
     @property
     def default_content(self):
         # Split content field into a list
-        l = [x for x in self.headings.split(",")]
+        li = [x for x in self.headings.split(",")]
 
         # format the content sections
-        l = [x.strip().capitalize() for x in l]
+        li = [x.strip().capitalize() for x in li]
 
         # Add a prefix to the heading
-        l = ["# " + x for x in l]
+        li = ["# " + x for x in li]
 
         # Separate the headings with newlines
-        return "\n- \n\n".join(l) + "\n- "
+        return "\n- \n\n".join(li) + "\n- "
 
 
 class Record(models.Model):
