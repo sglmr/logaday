@@ -230,3 +230,23 @@ class TestPostProfileRecordsSettingUpdate:
         assert RecordSetting.objects.get(user=user1).headings == _new_headings.get(
             "headings"
         )
+
+
+#  Test Export Records View
+# -------------------------------------
+@pytest.mark.django_db
+class TestExportDataView:
+    def test_export_csv_content_disposition(self, client, user1, recs_fixt):
+        client.force_login(user1)
+        r = client.get(reverse("records:export", kwargs={"format": "csv"}))
+        assert r.get("Content-Disposition")[-5:-1] == ".csv"
+
+    def test_export_json_content_disposition(self, client, user1, recs_fixt):
+        client.force_login(user1)
+        r = client.get(reverse("records:export", kwargs={"format": "json"}))
+        assert r.get("Content-Disposition")[-6:-1] == ".json"
+
+    def test_export_unsupported_format_status(self, client, user1, recs_fixt):
+        client.force_login(user1)
+        r = client.get(reverse("records:export", kwargs={"format": "blah"}))
+        assert r.status_code == 406
