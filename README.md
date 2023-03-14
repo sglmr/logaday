@@ -1,1 +1,1 @@
-# TODO
+![Logo](/static/images/logo_bungee_spice.png)
