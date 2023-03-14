@@ -26,9 +26,7 @@ def record_form_change_view(request: HttpRequest) -> TemplateResponse:
         )
     except (AttributeError, TypeError):
         # Do nothing if the date is invalid
-        h = HttpResponse("")
-        h.status_code = 204
-        return h
+        return HttpResponse("", status=204)
 
 
 @login_required()
@@ -81,6 +79,8 @@ def export_data_view(request: HttpRequest, format: str) -> HttpResponse | JsonRe
     )
     json_data = json.loads(serialized_data)
     json_data = [d["fields"] for d in json_data]
+
+    # Return a CSV Export
     if format.lower() == "csv":
         response = HttpResponse(
             content_type="text/csv",
@@ -95,8 +95,8 @@ def export_data_view(request: HttpRequest, format: str) -> HttpResponse | JsonRe
 
         return response
 
+    # Return a json export
     elif format.lower() == "json":
-
         return HttpResponse(
             json.dumps(json_data),
             content_type="application/json",
@@ -104,3 +104,6 @@ def export_data_view(request: HttpRequest, format: str) -> HttpResponse | JsonRe
                 "Content-Disposition": f'attachment; filename="{timezone.now()}.json"'
             },
         )
+
+    else:
+        return HttpResponse("", status=406)
