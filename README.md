@@ -14,7 +14,7 @@
 - [caddy](https://caddyserver.com/docs/quick-starts/reverse-proxy) for reverse proxy & certificates.
 - Testing with `pytest` and the following plugins: `pytest-randomly`, `pytest-xdist`, `pytest-django`, `pytest-cov`
 - Why not Docker? There is a solo developer and it was hard to find solid information on how best to serve the site through Docker on a VPS instead of a PaaS.
-- Why not PaaS? First, cost... Hosting two low traffic sites and a Postgres database would cost $20+/mo on a PaaS. (Not even including hosting static and media files on S2). I can host two low traffic project sites and Postgres on a $5/mo server.
+- Why not PaaS? First, cost... Hosting two low traffic sites and a Postgres database would cost $20+/mo on a PaaS. (Not even including hosting static and media files on S3). I can host two low traffic project sites and Postgres on a $5/mo server.
 
 # Using Recorda.Day
 This is what the main editor looks like:
